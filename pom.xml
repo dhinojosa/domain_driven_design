@@ -100,6 +100,11 @@
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <scope>test</scope>
         </dependency>
@@ -109,6 +114,11 @@
             <artifactId>cucumber-guice</artifactId>
             <version>7.11.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>5.1.0</version>
         </dependency>
         <!-- SLF4j dependencies -->
         <dependency>
@@ -164,6 +174,7 @@
             <artifactId>jansi</artifactId>
             <version>2.3.1</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
