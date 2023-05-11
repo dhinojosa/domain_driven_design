@@ -18,6 +18,10 @@ public class Card {
         this.rank = rank;
     }
 
+    public Rank rank() {
+        return rank;
+    }
+
     public String display() {
         String[] lines = new String[7];
         lines[0] = "┌─────────┐";

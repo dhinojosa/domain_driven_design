@@ -15,14 +15,14 @@ class CardTest {
   public void withNumberCardHasNumericValueOfTheNumber() throws Exception {
     Card card = new Card("don't care", Rank.SEVEN);
 
-    assertThat(card.rank.value())
+    assertThat(card.rank().value())
         .isEqualTo(7);
   }
 
   @Test
   public void withValueOfQueenHasNumericValueOf10() throws Exception {
     Card card = new Card("don't care", Rank.QUEEN);
-    assertThat(card.rank.value())
+    assertThat(card.rank().value())
         .isEqualTo(10);
   }
 
@@ -30,7 +30,7 @@ class CardTest {
   public void withAceHasNumericValueOf1() throws Exception {
     Card card = new Card("don't care", Rank.ACE);
 
-    assertThat(card.rank.value())
+    assertThat(card.rank().value())
         .isEqualTo(1);
   }
 
@@ -49,5 +49,4 @@ class CardTest {
     assertThat(diamondsCard.display())
         .contains(ansiRedString);
   }
-
 }

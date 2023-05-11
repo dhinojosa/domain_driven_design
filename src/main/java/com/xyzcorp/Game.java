@@ -96,13 +96,13 @@ public class Game {
     public int handValueOf(List<Card> hand) {
         int handValue = hand
             .stream()
-            .mapToInt(c -> c.rank.value())
+            .mapToInt(c -> c.rank().value())
             .sum();
 
         // does the hand contain at least 1 Ace?
         boolean hasAce = hand
             .stream()
-            .anyMatch(card -> card.rank.value() == 1);
+            .anyMatch(card -> card.rank().value() == 1);
 
         // if the total hand value <= 11, then count the Ace as 11 by adding 10
         if (hasAce && handValue < 11) {

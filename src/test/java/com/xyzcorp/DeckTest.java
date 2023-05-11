@@ -41,7 +41,7 @@ class DeckTest {
     assertThat(card)
         .isNotNull();
 
-    assertThat(card.rank.value())
+    assertThat(card.rank().value())
         .isGreaterThan(0);
   }
 
