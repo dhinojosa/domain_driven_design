@@ -11,7 +11,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 public class Card {
     private final String suit;
 
-    final Rank rank;
+    private final Rank rank;
 
     public Card(String suit, Rank rank) {
         this.suit = suit;
