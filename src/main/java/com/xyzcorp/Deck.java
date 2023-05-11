@@ -12,8 +12,7 @@ public class Deck {
     private final List<Card> cards = new ArrayList<>();
 
     public Deck() {
-        List<String> suits = List.of("♠", "♦", "♥", "♣");
-        for (String suit : suits) {
+        for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 cards.add(new Card(suit, rank));
             }

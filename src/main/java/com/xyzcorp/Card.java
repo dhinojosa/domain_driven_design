@@ -9,11 +9,12 @@ import static org.fusesource.jansi.Ansi.ansi;
  * <a href="https://moretestable.com/">MoreTestable.com</a>
  */
 public class Card {
-    private final String suit;
+
+    private final Suit suit;
 
     private final Rank rank;
 
-    public Card(String suit, Rank rank) {
+    public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }
@@ -32,7 +33,7 @@ public class Card {
         lines[5] = String.format("│       %s%s│", rank.isTen() ? "" : " ", rank);
         lines[6] = "└─────────┘";
 
-        Ansi.Color cardColor = "♥♦".contains(suit) ? Ansi.Color.RED : Ansi.Color.BLACK;
+        Ansi.Color cardColor = suit.isRed() ? Ansi.Color.RED : Ansi.Color.BLACK;
         return ansi()
             .fg(cardColor).toString()
             + String.join(ansi().cursorDown(1)

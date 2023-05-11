@@ -13,7 +13,7 @@ class CardTest {
 
   @Test
   public void withNumberCardHasNumericValueOfTheNumber() throws Exception {
-    Card card = new Card("don't care", Rank.SEVEN);
+    Card card = new Card(Suit.DIAMONDS, Rank.SEVEN);
 
     assertThat(card.rank().value())
         .isEqualTo(7);
@@ -21,14 +21,14 @@ class CardTest {
 
   @Test
   public void withValueOfQueenHasNumericValueOf10() throws Exception {
-    Card card = new Card("don't care", Rank.QUEEN);
+    Card card = new Card(Suit.DIAMONDS, Rank.QUEEN);
     assertThat(card.rank().value())
         .isEqualTo(10);
   }
 
   @Test
   public void withAceHasNumericValueOf1() throws Exception {
-    Card card = new Card("don't care", Rank.ACE);
+    Card card = new Card(Suit.DIAMONDS, Rank.ACE);
 
     assertThat(card.rank().value())
         .isEqualTo(1);
@@ -37,8 +37,8 @@ class CardTest {
   @Test
   public void suitOfHeartsOrDiamondsIsDisplayedInRed() throws Exception {
     // given a card with Hearts or Diamonds
-    Card heartsCard = new Card("♥", Rank.TEN);
-    Card diamondsCard = new Card("♦", Rank.EIGHT);
+    Card heartsCard = new Card(Suit.HEARTS, Rank.TEN);
+    Card diamondsCard = new Card(Suit.DIAMONDS, Rank.EIGHT);
 
     // when we ask for its display representation
     String ansiRedString = ansi().fgRed().toString();
