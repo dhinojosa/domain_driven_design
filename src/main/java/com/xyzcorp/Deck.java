@@ -9,24 +9,23 @@ import java.util.List;
  * <a href="https://moretestable.com/">MoreTestable.com</a>
  */
 public class Deck {
-  private final List<Card> cards = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
 
-  public Deck() {
-    List<String> cardValues = List.of("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K");
-    List<String> suits = List.of("♠", "♦", "♥", "♣");
-    for (String suit : suits) {
-      for (String cardValue : cardValues) {
-        cards.add(new Card(suit, cardValue));
-      }
+    public Deck() {
+        List<String> suits = List.of("♠", "♦", "♥", "♣");
+        for (String suit : suits) {
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(suit, rank));
+            }
+        }
+        Collections.shuffle(cards);
     }
-    Collections.shuffle(cards);
-  }
 
-  public int size() {
-    return cards.size();
-  }
+    public int size() {
+        return cards.size();
+    }
 
-  public Card draw() {
-    return cards.remove(0);
-  }
+    public Card draw() {
+        return cards.remove(0);
+    }
 }
