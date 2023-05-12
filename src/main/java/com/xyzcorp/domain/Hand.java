@@ -17,7 +17,7 @@ public class Hand {
         this.cardList = new ArrayList<Card>();
     }
 
-    void drawFrom(Deck deck) {
+    public void drawFrom(Deck deck) {
         cardList.add(deck.draw());
     }
 
@@ -44,11 +44,11 @@ public class Hand {
         return handValue;
     }
 
-    Card topCard() {
+    public Card topCard() {
         return cardList.get(0);
     }
 
-    boolean isBust() {
+    public boolean isBust() {
         return value() > 21;
     }
 
@@ -56,11 +56,11 @@ public class Hand {
         return value() <= 16;
     }
 
-    boolean beats(Hand other) {
+    public boolean beats(Hand other) {
         return other.value() < value();
     }
 
-    boolean pushes(Hand other) {
+    public boolean pushes(Hand other) {
         return other.value() == value();
     }
 }
