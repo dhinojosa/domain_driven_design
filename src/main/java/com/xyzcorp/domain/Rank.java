@@ -1,4 +1,4 @@
-package com.xyzcorp;
+package com.xyzcorp.domain;
 
 public enum Rank {
     ACE("A"),
@@ -31,7 +31,7 @@ public enum Rank {
         }
     }
 
-    boolean isTen() {
+    public boolean isTen() {
         return symbol.equals("10");
     }
 

@@ -1,9 +1,8 @@
-package com.xyzcorp;
+package com.xyzcorp.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
@@ -20,6 +19,10 @@ public class Hand {
 
     void drawFrom(Deck deck) {
         cardList.add(deck.draw());
+    }
+
+    public List<Card> getCardList() {
+        return cardList;
     }
 
     public int value() {
@@ -43,13 +46,6 @@ public class Hand {
 
     Card topCard() {
         return cardList.get(0);
-    }
-
-    void display() {
-        System.out.println(cardList.stream()
-            .map(Card::display)
-            .collect(Collectors.joining(
-                ansi().cursorUp(6).cursorRight(1).toString())));
     }
 
     boolean isBust() {

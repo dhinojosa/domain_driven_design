@@ -1,5 +1,7 @@
-package com.xyzcorp;
+package com.xyzcorp.domain;
 
+import com.xyzcorp.domain.Card;
+import com.xyzcorp.domain.Deck;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
