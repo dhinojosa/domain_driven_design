@@ -21,7 +21,7 @@ public class Game {
     }
 
     public void playerHits() {
-        playerHand.drawFrom(getDeck());
+        playerHand.drawFrom(deck);
         isPlayerDone = playerHand.isBust();
     }
 
@@ -41,10 +41,6 @@ public class Game {
     private void dealRound() {
         playerHand.drawFrom(deck);
         dealerHand.drawFrom(deck);
-    }
-
-    public Deck getDeck() {
-        return deck;
     }
 
     public Hand getPlayerHand() {
