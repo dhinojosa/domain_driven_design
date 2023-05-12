@@ -1,8 +1,8 @@
-package com.xyzcorp;
+package com.xyzcorp.domain;
 
-import org.fusesource.jansi.Ansi;
-
-import java.util.Scanner;
+import com.xyzcorp.adapter.in.ConsoleCard;
+import com.xyzcorp.adapter.in.ConsoleGame;
+import com.xyzcorp.adapter.in.ConsoleHand;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
@@ -17,24 +17,6 @@ public class Game {
     private Hand playerHand = new Hand();
 
     private final Hand dealerHand = new Hand();
-
-    public static void main(String[] args) {
-        Game game = new Game();
-
-        System.out.println(ansi()
-            .bgBright(Ansi.Color.WHITE)
-            .eraseScreen()
-            .cursor(1, 1)
-            .fgGreen().a("Welcome to")
-            .fgRed().a(" Jitterted's")
-            .fgBlack().a(" BlackJack"));
-
-
-        game.initialDeal();
-        game.play();
-
-        System.out.println(ansi().reset());
-    }
 
     public Game() {
         deck = new Deck();
@@ -55,7 +37,7 @@ public class Game {
         boolean playerBusted = false;
         while (!playerBusted) {
             displayGameState();
-            String playerChoice = inputFromPlayer().toLowerCase();
+            String playerChoice = ConsoleGame.inputFromPlayer().toLowerCase();
             if (playerChoice.startsWith("s")) {
                 break;
             }
@@ -91,49 +73,29 @@ public class Game {
         }
     }
 
-    private String inputFromPlayer() {
-        System.out.println("[H]it or [S]tand?");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
-
     private void displayGameState() {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
-        System.out.println(dealerHand.topCard().display()); // first card is Face Up
+        System.out.println(ConsoleCard.display(dealerHand.topCard())); // first card is Face Up
 
         // second card is the hole card, which is hidden
-        displayBackOfCard();
+        ConsoleCard.displayBackOfCard();
 
         System.out.println();
         System.out.println("Player has: ");
-        playerHand.display();
+        ConsoleHand.display(playerHand);
         System.out.println(" (" + playerHand.value() + ")");
-    }
-
-    private void displayBackOfCard() {
-        System.out.print(
-            ansi()
-                .cursorUp(7)
-                .cursorRight(12)
-                .a("┌─────────┐").cursorDown(1).cursorLeft(11)
-                .a("│░░░░░░░░░│").cursorDown(1).cursorLeft(11)
-                .a("│░ J I T ░│").cursorDown(1).cursorLeft(11)
-                .a("│░ T E R ░│").cursorDown(1).cursorLeft(11)
-                .a("│░ T E D ░│").cursorDown(1).cursorLeft(11)
-                .a("│░░░░░░░░░│").cursorDown(1).cursorLeft(11)
-                .a("└─────────┘"));
     }
 
     private void displayFinalGameState() {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
-        dealerHand.display();
+        ConsoleHand.display(dealerHand);
         System.out.println(" (" + dealerHand.value() + ")");
 
         System.out.println();
         System.out.println("Player has: ");
-        playerHand.display();
+        ConsoleHand.display(playerHand);
         System.out.println(" (" + playerHand.value() + ")");
     }
 }

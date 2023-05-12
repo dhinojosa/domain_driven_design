@@ -1,5 +1,9 @@
-package com.xyzcorp;
+package com.xyzcorp.domain;
 
+import com.xyzcorp.domain.Card;
+import com.xyzcorp.domain.Hand;
+import com.xyzcorp.domain.Rank;
+import com.xyzcorp.domain.Suit;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

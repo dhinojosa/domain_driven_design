@@ -1,5 +1,6 @@
-package com.xyzcorp;
+package com.xyzcorp.domain;
 
+import com.xyzcorp.adapter.in.ConsoleCard;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,9 +45,9 @@ class CardTest {
     String ansiRedString = ansi().fgRed().toString();
 
     // then we expect a red color ansi sequence
-    assertThat(heartsCard.display())
+    assertThat(ConsoleCard.display(heartsCard))
         .contains(ansiRedString);
-    assertThat(diamondsCard.display())
+    assertThat(ConsoleCard.display(heartsCard))
         .contains(ansiRedString);
   }
 }

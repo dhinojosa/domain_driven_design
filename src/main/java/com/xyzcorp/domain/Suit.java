@@ -1,4 +1,4 @@
-package com.xyzcorp;
+package com.xyzcorp.domain;
 
 public enum Suit {
 
@@ -20,7 +20,7 @@ public enum Suit {
         return symbol;
     }
 
-    boolean isRed() {
+    public boolean isRed() {
         return "♥♦".contains(symbol);
     }
 }
