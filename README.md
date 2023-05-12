@@ -78,4 +78,10 @@ CREATE STREAM stock_trades WITH (
     12.1 ksql http://ksqldb-server:8088
     12.2 show streams;
     12.3 select * from STOCK_TRADES;
-13. ....
+    12.4 set KSQLDB offset - `SET 'auto.offset.reset'='earliest';`
+    12.5 `select stock_symbol,count(*) as count from STOCK_TRADES group by STOCK_SYMBOL emit changes;`
+    12.6 `select stock_symbol,count(*) as count, topk(stock_symbol, 5)  from STOCK_TRADES group by STOCK_SYMBOL emit changes;`
+    12.7 create an aggregate topic - `create table stock_count with (PARTITIONS = 3, VALUE_FORMAT = 'JSON') as select STOCK_SYMBOL, count(*) as count from STOCK_TRADES group by stock_symbol EMIT CHANGES;`
+13. Setup MongoDB sink (read data from Aggregate Topic and push data to MongoDB)
+   13.1 configure MongoDB sink using `mongosink.json` that is in `src\main\resources`
+   13.2 use mongodb-express container to see the results for the database
