@@ -74,4 +74,8 @@ CREATE STREAM stock_trades WITH (
   VALUE_FORMAT = 'AVRO'
 );
 ```
-12. ...... 
+12. Go to KSQL-CLI Container -> Attach Shell and run following commands
+    12.1 ksql http://ksqldb-server:8088
+    12.2 show streams;
+    12.3 select * from STOCK_TRADES;
+13. ....
