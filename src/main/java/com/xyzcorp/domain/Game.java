@@ -1,9 +1,5 @@
 package com.xyzcorp.domain;
 
-import com.xyzcorp.adapter.in.ConsoleCard;
-import com.xyzcorp.adapter.in.ConsoleGame;
-import com.xyzcorp.adapter.in.ConsoleHand;
-
 import static org.fusesource.jansi.Ansi.ansi;
 
 /**
@@ -18,8 +14,23 @@ public class Game {
 
     private final Hand dealerHand = new Hand();
 
+    private boolean isPlayerDone = Boolean.FALSE;
+
     public Game() {
         deck = new Deck();
+    }
+
+    public void playerHits() {
+        playerHand.drawFrom(getDeck());
+        isPlayerDone = playerHand.isBust();
+    }
+
+    public void playerStands() {
+        isPlayerDone = Boolean.TRUE;
+    }
+
+    public boolean isPlayerDone() {
+        return isPlayerDone;
     }
 
     public void initialDeal() {
@@ -32,70 +43,25 @@ public class Game {
         dealerHand.drawFrom(deck);
     }
 
-    public void play() {
-        // get Player's decision: hit until they stand, then they're done (or they go bust)
-        boolean playerBusted = false;
-        while (!playerBusted) {
-            displayGameState();
-            String playerChoice = ConsoleGame.inputFromPlayer().toLowerCase();
-            if (playerChoice.startsWith("s")) {
-                break;
-            }
-            if (playerChoice.startsWith("h")) {
-                playerHand.drawFrom(deck);
-                if (playerHand.isBust()) {
-                    playerBusted = true;
-                }
-            } else {
-                System.out.println("You need to [H]it or [S]tand");
-            }
-        }
+    public Deck getDeck() {
+        return deck;
+    }
 
+    public Hand getPlayerHand() {
+        return playerHand;
+    }
+
+    public Hand getDealerHand() {
+        return dealerHand;
+    }
+
+    public void dealerPlays() {
         // Dealer makes its choice automatically based on a simple heuristic (<=16, hit, 17>=stand)
-        if (!playerBusted) {
-            while (dealerHand.isUnderDealLimit()) {
-                dealerHand.drawFrom(deck);
+        if (!getPlayerHand().isBust()) {
+            while (getDealerHand().isUnderDealLimit()) {
+                getDealerHand().drawFrom(deck);
             }
         }
-
-        displayFinalGameState();
-
-        if (playerBusted) {
-            System.out.println("You Busted, so you lose.  💸");
-        } else if (dealerHand.isBust()) {
-            System.out.println("Dealer went BUST, Player wins! Yay for you!! 💵");
-        } else if (playerHand.beats(dealerHand)) {
-            System.out.println("You beat the Dealer! 💵");
-        } else if (playerHand.pushes(dealerHand)) {
-            System.out.println("Push: You tie with the Dealer. 💸");
-        } else {
-            System.out.println("You lost to the Dealer. 💸");
-        }
     }
 
-    private void displayGameState() {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        System.out.println(ConsoleCard.display(dealerHand.topCard())); // first card is Face Up
-
-        // second card is the hole card, which is hidden
-        ConsoleCard.displayBackOfCard();
-
-        System.out.println();
-        System.out.println("Player has: ");
-        ConsoleHand.display(playerHand);
-        System.out.println(" (" + playerHand.value() + ")");
-    }
-
-    private void displayFinalGameState() {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        ConsoleHand.display(dealerHand);
-        System.out.println(" (" + dealerHand.value() + ")");
-
-        System.out.println();
-        System.out.println("Player has: ");
-        ConsoleHand.display(playerHand);
-        System.out.println(" (" + playerHand.value() + ")");
-    }
 }
