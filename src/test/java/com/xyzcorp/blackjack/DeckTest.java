@@ -1,7 +1,5 @@
-package com.xyzcorp.domain;
+package com.xyzcorp.blackjack;
 
-import com.xyzcorp.domain.Card;
-import com.xyzcorp.domain.Deck;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -43,7 +41,7 @@ class DeckTest {
     assertThat(card)
         .isNotNull();
 
-    assertThat(card.rank().value())
+    assertThat(card.rankValue())
         .isGreaterThan(0);
   }
 

@@ -85,7 +85,6 @@ services:
 
     control-center:
         image: confluentinc/cp-enterprise-control-center:7.4.0
-        platform: linux/amd64
         hostname: control-center
         container_name: control-center
         depends_on:
@@ -202,3 +201,50 @@ services:
             ME_CONFIG_MONGODB_ADMINUSERNAME: root
             ME_CONFIG_MONGODB_ADMINPASSWORD: example
             ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+
+    my-avro-producer:
+        image: dhinojosa/my-avro-producer
+        depends_on:
+            - broker
+            - schema-registry
+        hostname: my-producer
+        container_name: my-producer
+        environment:
+            BOOTSTRAP_SERVERS: "broker:29092"
+            SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+
+    my-avro-consumer-1:
+        image: dhinojosa/my-avro-consumer
+        depends_on:
+            - broker
+            - schema-registry
+        hostname: my-consumer-1
+        container_name: my-consumer-1
+        environment:
+            BOOTSTRAP_SERVERS: "broker:29092"
+            SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+            GROUP_ID: "my-avro-group"
+
+    my-avro-consumer-2:
+        image: dhinojosa/my-avro-consumer
+        depends_on:
+            - broker
+            - schema-registry
+        hostname: my-consumer-2
+        container_name: my-consumer-2
+        environment:
+            BOOTSTRAP_SERVERS: "broker:29092"
+            SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+            GROUP_ID: "my-avro-group"
+
+    my-avro-consumer-3:
+        image: dhinojosa/my-avro-consumer
+        depends_on:
+            - broker
+            - schema-registry
+        hostname: my-consumer-3
+        container_name: my-consumer-3
+        environment:
+            BOOTSTRAP_SERVERS: "broker:29092"
+            SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+            GROUP_ID: "my-avro-group"

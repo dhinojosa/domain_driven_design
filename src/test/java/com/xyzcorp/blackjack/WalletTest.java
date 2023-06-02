@@ -1,4 +1,4 @@
-package com.xyzcorp;
+package com.xyzcorp.blackjack;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -10,11 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WalletTest {
 
-    private Wallet wallet;
+    private com.xyzcorp.Wallet wallet;
 
     @BeforeEach
     void setUp() {
-        wallet = new Wallet();
+        wallet = new com.xyzcorp.Wallet();
     }
 
     @Test

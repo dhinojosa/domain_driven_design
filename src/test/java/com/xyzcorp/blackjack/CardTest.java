@@ -1,6 +1,5 @@
-package com.xyzcorp.domain;
+package com.xyzcorp.blackjack;
 
-import com.xyzcorp.adapter.in.ConsoleCard;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,40 +13,42 @@ class CardTest {
 
   @Test
   public void withNumberCardHasNumericValueOfTheNumber() throws Exception {
-    Card card = new Card(Suit.DIAMONDS, Rank.SEVEN);
+    Card card = new Card("don't care", "7");
 
-    assertThat(card.rank().value())
+    assertThat(card.rankValue())
         .isEqualTo(7);
   }
 
   @Test
   public void withValueOfQueenHasNumericValueOf10() throws Exception {
-    Card card = new Card(Suit.DIAMONDS, Rank.QUEEN);
-    assertThat(card.rank().value())
+    Card card = new Card("don't care", "Q");
+
+    assertThat(card.rankValue())
         .isEqualTo(10);
   }
 
   @Test
   public void withAceHasNumericValueOf1() throws Exception {
-    Card card = new Card(Suit.DIAMONDS, Rank.ACE);
+    Card card = new Card("don't care", "A");
 
-    assertThat(card.rank().value())
+    assertThat(card.rankValue())
         .isEqualTo(1);
   }
 
   @Test
   public void suitOfHeartsOrDiamondsIsDisplayedInRed() throws Exception {
     // given a card with Hearts or Diamonds
-    Card heartsCard = new Card(Suit.HEARTS, Rank.TEN);
-    Card diamondsCard = new Card(Suit.DIAMONDS, Rank.EIGHT);
+    Card heartsCard = new Card("♥", "10");
+    Card diamondsCard = new Card("♦", "8");
 
     // when we ask for its display representation
     String ansiRedString = ansi().fgRed().toString();
 
     // then we expect a red color ansi sequence
-    assertThat(ConsoleCard.display(heartsCard))
+    assertThat(heartsCard.display())
         .contains(ansiRedString);
-    assertThat(ConsoleCard.display(heartsCard))
+    assertThat(diamondsCard.display())
         .contains(ansiRedString);
   }
+
 }

@@ -36,17 +36,13 @@ public class StudentTxScriptTest {
         System.out.printf("Password: %s%n", postgresSQLContainer.getPassword());
         System.out.printf("URL: %s%n", postgresSQLContainer.getJdbcUrl());
         System.out.printf("Database: %s%n", postgresSQLContainer.getDatabaseName());
-        studentTxScript = new StudentTxScript(new Supplier<Connection>() {
-            @Override
-            public Connection get() {
-                try {
-                    return source.getConnection();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+        studentTxScript = new StudentTxScript(() -> {
+            try {
+                return source.getConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         });
-
     }
 
 
