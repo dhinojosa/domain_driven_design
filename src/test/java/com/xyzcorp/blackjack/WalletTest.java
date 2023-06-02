@@ -10,11 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WalletTest {
 
-    private com.xyzcorp.Wallet wallet;
+    private Wallet wallet;
 
     @BeforeEach
     void setUp() {
-        wallet = new com.xyzcorp.Wallet();
+        wallet = new Wallet();
     }
 
     @Test
