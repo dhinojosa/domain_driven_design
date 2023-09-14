@@ -9,12 +9,12 @@ public class InsuranceClaimsSteps {
 
     @Given("an existing customer")
     public void anExistingCustomer() {
-
+        System.out.println("Getting a customer");
     }
 
     @When("that customer files a claim")
     public void customerFilesAClaim() {
-
+        System.out.println("Filing claim");
     }
 
     @And("the claim is within {int} days of the auto accident")
