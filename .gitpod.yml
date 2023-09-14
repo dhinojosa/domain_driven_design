@@ -16,3 +16,4 @@ vscode:
         - vscjava.vscode-java-test
         - vscjava.vscode-java-dependency
         - vscjava.vscode-maven
+        - cucumberopen.cucumber-official
