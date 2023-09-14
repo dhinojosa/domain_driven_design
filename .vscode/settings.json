@@ -5,5 +5,11 @@
             "name": "JavaSE-17",
             "path": "~/.sdkman/candidates/java/17.0.8.1-tem/"
         }
+    ],
+    "cucumber.features": [
+          "src/main/resources/**/*.feature",
+    ],
+    "cucumber.glue": [
+        "src/test/**/*.java",
     ]
 }
