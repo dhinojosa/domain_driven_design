@@ -2,7 +2,7 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.configuration.runtimes": [
         {
-            "name": "JavaSE-20",
+            "name": "JavaSE-17",
             "path": "~/.sdkman/candidates/java/17.0.8.1-tem/"
         }
     ]
