@@ -5,7 +5,7 @@
 
 tasks:
     - name: Setup & Build
-      before: sdk install 17.0.8.1-tem < /dev/null
+      before: sdk install java 17.0.8.1-tem < /dev/null
       init: mvn install -DskipTests=true
 vscode:
     extensions:
