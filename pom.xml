@@ -178,6 +178,12 @@
             <artifactId>jansi</artifactId>
             <version>2.3.1</version>
         </dependency>
+        <!-- Context Mapper -->
+        <dependency>
+            <groupId>org.contextmapper</groupId>
+            <artifactId>context-map-generator</artifactId>
+            <version>1.2.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
